@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Index() {
+function Home() {
     return (
         <div>
             <span>Covid-19</span>
@@ -8,4 +8,4 @@ function Index() {
     );
 }
 
-export default Index;
+export default Home;
