@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import mapboxgl from 'mapbox-gl';
+import React, {useEffect, useRef, useState} from 'react';
+import mapBoxGL from 'mapbox-gl';
+import {mapConfig} from "../../config";
 
-mapboxgl.accessToken = 'pk.eyJ1IjoibmFiaWxiZXJkIiwiYSI6ImNrOGNhdHQ3cDBrbGEzZnBlZDkxeGVxdHkifQ.CqkJ3P5DwjPEKW65AEclJA';
+mapBoxGL.accessToken = mapConfig.accessToken;
 
 function Home() {
 
@@ -9,13 +10,13 @@ function Home() {
         lng: 5,
         lat: 34,
         zoom: 2
-    })
-    let mapContainer = useRef("mapContainer");
+    });
+    const mapContainer = useRef("mapContainer");
 
     /* eslint-disable */
     useEffect(() => {
-        const map = new mapboxgl.Map({
-            container: mapContainer,
+        const map: any = new mapBoxGL.Map({
+            container: mapContainer.current,
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [infos.lng, infos.lat],
             zoom: infos.zoom
@@ -33,7 +34,7 @@ function Home() {
     return (
         <div>
             <span>Covid-19</span>
-            <div ref={el => mapContainer = el} className="mapContainer" />
+            <div ref={(el: any) => mapContainer.current = el} className="mapContainer"/>
         </div>
     );
 }
