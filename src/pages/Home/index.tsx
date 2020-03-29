@@ -12,9 +12,9 @@ mapBoxGL.setRTLTextPlugin(
 function Home() {
 
     const [infos, setInfos] = useState({
-        lng: 5,
-        lat: 34,
-        zoom: 2
+        lng: -8,
+        lat: 29,
+        zoom: 4.6
     });
     const mapContainer = useRef("mapContainer");
 
@@ -27,6 +27,9 @@ function Home() {
             center: [infos.lng, infos.lat],
             zoom: infos.zoom
         });
+
+        // Add zoom and rotation controls to the map.
+        map.addControl(new mapBoxGL.NavigationControl());
 
         map.on('move', () => {
             setInfos({
