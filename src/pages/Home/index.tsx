@@ -3,6 +3,11 @@ import mapBoxGL from 'mapbox-gl';
 import {mapConfig} from "../../config";
 
 mapBoxGL.accessToken = mapConfig.accessToken;
+mapBoxGL.setRTLTextPlugin(
+    mapConfig.apiText,
+    () => {},
+    true // Lazy load the plugin
+);
 
 function Home() {
 
@@ -15,6 +20,7 @@ function Home() {
 
     /* eslint-disable */
     useEffect(() => {
+    
         const map: any = new mapBoxGL.Map({
             container: mapContainer.current,
             style: 'mapbox://styles/mapbox/streets-v11',
