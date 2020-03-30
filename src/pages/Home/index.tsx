@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import ReactMapboxGl, { Layer, Feature, ZoomControl, ScaleControl, RotationControl, Popup } from 'react-mapbox-gl';
-import { mapConfig } from "../../config";
-
+import React, {useEffect, useState} from 'react';
+import ReactMapboxGl, {RotationControl, ZoomControl} from 'react-mapbox-gl';
+import {mapConfig} from "../../config";
+import Circles from './Circles';
 
 function Home() {
 
@@ -9,9 +9,13 @@ function Home() {
         objectid: "1",
         latitude: "-8",
         longitude: "29"
-    }]);
+    },
+        {
+            objectid: "1",
+            latitude: "-3",
+            longitude: "29"
+        }]);
 
-    const [selected, setSelected] = useState(false);
 
     useEffect(() => {
         fetch("https://data.cityofnewyork.us/resource/yjub-udmw.json")
@@ -22,9 +26,6 @@ function Home() {
     }, []);
 
 
-    function closePopup(){
-        setSelected(false) 
-    };
 
     const [infos, setInfos] = useState({
         lng: -8,
@@ -32,44 +33,12 @@ function Home() {
         zoom: 4.6
     });
 
-    console.log(selected)
 
     const Map = ReactMapboxGl({
         accessToken: mapConfig.accessToken
     });
 
-    const features = dataSet.map((newData, index) => {
-        return (
-            <>
-                <Layer type="circle" id={"marker" + index} paint={{
-                    'circle-color': "red",
-                    'circle-stroke-width': index + 12,
-                    'circle-stroke-color': 'red',
-                    'circle-stroke-opacity': 1
-                }}>
-                    <Feature
-                        coordinates={[parseFloat(newData.latitude), parseFloat(newData.longitude)]}
-                        onClick={() => setSelected(true)}
-                    >
-                    </Feature>
-                </Layer>
-                {selected && (
-                        <Popup                    
-                            coordinates={[parseFloat(newData.latitude), parseFloat(newData.longitude)]}
-                        >
-                            <div>
-                                <p>
-                                    <b>Latitude:</b> {newData.latitude}
-                                </p>
-                                <p>
-                                    <b>Longitude:</b> {newData.longitude}
-                                </p>
-                            </div>
-                        </Popup>
-                )}
-            </>
-        )
-    })
+
 
 
     return (
@@ -84,8 +53,8 @@ function Home() {
                         }}
                     >
                         <>
-                            <ZoomControl /><RotationControl /><ZoomControl />
-                            {features}
+                            <ZoomControl /><RotationControl /><ZoomControl/>
+                            <Circles dataSet={dataSet}/>
                         </>
                     </Map>
                 </div>
