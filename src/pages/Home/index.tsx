@@ -1,24 +1,20 @@
-import React, {useMemo, useState} from 'react';
-import ReactMapboxGl, {Feature, Layer, RotationControl, ZoomControl} from 'react-mapbox-gl';
+import React, {useEffect, useState} from 'react';
+import ReactMapboxGl, {RotationControl, ZoomControl} from 'react-mapbox-gl';
 import {mapConfig} from "../../config";
-
+import Circles from './Circles';
 
 function Home() {
 
-    const [dataSet, setDataSet] = useState([
+    const [dataSet, setDataSet] = useState([{
+        objectid: "1",
+        latitude: "-8",
+        longitude: "29"
+    },
         {
             objectid: "1",
-            longitude: "-6.8498129",
-            latitude: "33.9715904",
-            cases: 100,
-        },
-        {
-            objectid: "2",
-            longitude: "-2.9275836",
-            latitude: "35.1686165",
-            cases: 50,
-        }]
-    );
+            latitude: "-3",
+            longitude: "29"
+        }]);
 
     /*useEffect(() => {
         fetch("https://data.cityofnewyork.us/resource/yjub-udmw.json")
@@ -27,7 +23,6 @@ function Home() {
                 //setDataSet(data)
             });
     }, []);*/
-
 
     const [infos, setInfos] = useState({
         lng: -8,
@@ -56,9 +51,7 @@ function Home() {
                 <Layer type="circle" id={"marker" + index} paint={{
                     'circle-color': "rgb(255,0,0)",
                     'circle-stroke-color': 'rgb(255,0,0)',
-
                     'circle-stroke-width': width,
-
                     'circle-opacity': opacity,
                     'circle-stroke-opacity': opacity
                 }}>
