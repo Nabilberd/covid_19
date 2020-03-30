@@ -1,12 +1,22 @@
 import React from "react";
 import {Feature, Layer, Popup} from "react-mapbox-gl";
+import {Data} from "../../api/Statistics/models";
 
-const Circle = ({index, newData, selected, setSelected, max}: any) => {
+interface IProps {
+    index: number;
+    newData: Data;
+    selected: boolean;
+    setSelected: () => void;
+    max: number;
+}
+
+
+const Circle = ({index, newData, selected, setSelected, max}: IProps) => {
 
     // @ts-ignore
-    const opacity: number = newData.cases / max;
+    const opacity: number = newData.activeCases / max;
     // @ts-ignore
-    const width: number = newData.cases * 20 / max;
+    const width: number = newData.activeCases * 20 / max;
     return <>
         <Layer type="circle" id={"marker" + index} paint={{
             'circle-color': "rgb(255,0,0)",
@@ -19,7 +29,7 @@ const Circle = ({index, newData, selected, setSelected, max}: any) => {
         }}>
             <Feature
                 coordinates={[parseFloat(newData.longitude), parseFloat(newData.latitude)]}
-                onClick={() => setSelected(true)}
+                onClick={setSelected}
             >
             </Feature>
         </Layer>
@@ -29,10 +39,7 @@ const Circle = ({index, newData, selected, setSelected, max}: any) => {
             >
                 <div>
                     <p>
-                        <b>Latitude:</b> {newData.latitude}
-                    </p>
-                    <p>
-                        <b>Longitude:</b> {newData.longitude}
+                        <b>Region : </b> {newData.label}
                     </p>
                 </div>
             </Popup>
