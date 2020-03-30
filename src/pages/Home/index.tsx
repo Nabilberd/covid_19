@@ -1,21 +1,22 @@
-import React, {useEffect, useState, useMemo} from 'react';
-import ReactMapboxGl, {RotationControl, ZoomControl, Layer, Feature} from 'react-mapbox-gl';
+import React, {useMemo, useState} from 'react';
+import ReactMapboxGl, {RotationControl, ZoomControl} from 'react-mapbox-gl';
 import {mapConfig} from "../../config";
 import Circles from './Circles';
 
 function Home() {
 
-    const [dataSet, setDataSet] = useState([{
-        objectid: "1",
-        latitude: "-8",
-        longitude: "29",
-        cases: 100
-    },
+    const [dataSet, setDataSet] = useState([
         {
             objectid: "1",
-            latitude: "-3",
-            longitude: "29",
-            cases: 100
+            longitude: "-6.8498129",
+            latitude: "33.9715904",
+            cases: 100,
+        },
+        {
+            objectid: "2",
+            longitude: "-2.9275836",
+            latitude: "35.1686165",
+            cases: 50,
         }]);
 
     /*useEffect(() => {
