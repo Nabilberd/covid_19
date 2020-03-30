@@ -8,7 +8,7 @@ function Home() {
 
     const {statistics} = useController();
 
-    const [infos, setInfos] = useState({
+    const [infos,] = useState({
         lng: -8,
         lat: 29,
         cases: 10,
