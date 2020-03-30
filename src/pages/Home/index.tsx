@@ -7,15 +7,15 @@ function Home() {
 
     const [dataSet, setDataSet] = useState([{
         objectid: "1",
-        latitude: "3",
-        longitude: "1"
+        latitude: "-8",
+        longitude: "29"
     }]);
 
     useEffect(() => {
         fetch("https://data.cityofnewyork.us/resource/yjub-udmw.json")
             .then(res => res.json())
             .then(data => {
-                setDataSet(data)
+                //setDataSet(data)
             });
     }, []);
 
@@ -35,9 +35,9 @@ function Home() {
     const features = dataSet.map((newData, index) => {
         return (
             <Layer type="circle" id={"marker" + index} paint={{
-                'circle-color': "#ff5200",
+                'circle-color': "red",
                 'circle-stroke-width': index + 12,
-                'circle-stroke-color': '#fff',
+                'circle-stroke-color': 'red',
                 'circle-stroke-opacity': 1
             }}>
                 <Feature coordinates={[parseFloat(newData.latitude), parseFloat(newData.longitude)]} />
@@ -51,7 +51,7 @@ function Home() {
             <Map
                 center={[infos.lng, infos.lat]}
                 zoom={[infos.zoom]}
-                style="mapbox://styles/mapbox/streets-v9"
+                style="mapbox://styles/mapbox/dark-v10"
                 containerStyle={{
                     height: '100vh',
                     width: '100vw'
