@@ -19,8 +19,8 @@ function Home() {
             });
     }, []);
 
-    console.log(dataSet)
-    
+
+
 
     const [infos, setInfos] = useState({
         lng: -8,
@@ -31,6 +31,20 @@ function Home() {
     const Map = ReactMapboxGl({
         accessToken: mapConfig.accessToken
     });
+
+    const features = dataSet.map((newData, index) => {
+        return (
+            <Layer type="circle" id={"marker" + index} paint={{
+                'circle-color': "#ff5200",
+                'circle-stroke-width': index + 12,
+                'circle-stroke-color': '#fff',
+                'circle-stroke-opacity': 1
+            }}>
+                <Feature coordinates={[parseFloat(newData.latitude), parseFloat(newData.longitude)]} />
+            </Layer>
+        )
+    })
+
 
     return (
         <div className="mapContainer">
@@ -43,22 +57,10 @@ function Home() {
                     width: '100vw'
                 }}
             >
-                <ZoomControl /><RotationControl /><ZoomControl />
-                <Layer type="circle" id="marker" paint={{
-                    'circle-color': "red",
-                    'circle-stroke-width': 30,
-                    'circle-stroke-color': 'red',
-                    'circle-stroke-opacity': 1
-                }}>
-                    {
-                        dataSet.map( newData => {
-                            return (
-                                <Feature coordinates={[parseFloat(newData.latitude), parseFloat(newData.longitude)]} />
-                            )
-                        })
-                    }
-                    <Feature coordinates={[-0.465, 51.258]} />
-                </Layer>            
+                <>
+                    <ZoomControl /><RotationControl /><ZoomControl />
+                    {features}
+                </>
             </Map>
         </div>
     );
