@@ -1,49 +1,83 @@
-import React, {useEffect, useRef, useState} from 'react';
-import mapBoxGL from 'mapbox-gl';
+import React, {useEffect, useState} from 'react';
+import ReactMapboxGl, {RotationControl, ZoomControl} from 'react-mapbox-gl';
 import {mapConfig} from "../../config";
-
-mapBoxGL.accessToken = mapConfig.accessToken;
-mapBoxGL.setRTLTextPlugin(
-    mapConfig.apiText,
-    () => {},
-    true // Lazy load the plugin
-);
+import Circles from './Circles';
 
 function Home() {
+
+    const [dataSet, setDataSet] = useState([{
+        objectid: "1",
+        latitude: "-8",
+        longitude: "29"
+    },
+        {
+            objectid: "1",
+            latitude: "-3",
+            longitude: "29"
+        }]);
+
+    /*useEffect(() => {
+        fetch("https://data.cityofnewyork.us/resource/yjub-udmw.json")
+            .then(res => res.json())
+            .then(data => {
+                //setDataSet(data)
+            });
+    }, []);*/
 
     const [infos, setInfos] = useState({
         lng: -8,
         lat: 29,
+        cases: 10,
         zoom: 4.6
     });
-    const mapContainer = useRef("mapContainer");
 
-    /* eslint-disable */
-    useEffect(() => {
-    
-        const map: any = new mapBoxGL.Map({
-            container: mapContainer.current,
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [infos.lng, infos.lat],
-            zoom: infos.zoom
+    const Map = useMemo(() => ReactMapboxGl({
+        accessToken: mapConfig.accessToken
+    }), []);
+
+    const features = useMemo(() => {
+        const max: Number = dataSet.reduce<Number>((previousValue, currentValue) => {
+            return previousValue > currentValue.cases ? previousValue : currentValue.cases;
+        }, 0);
+        return dataSet.map((newData, index) => {
+
+
+            // @ts-ignore
+            const opacity: number = newData.cases / max;
+            // @ts-ignore
+            const width: number = newData.cases * 20 / max;
+
+            return (
+                <Layer type="circle" id={"marker" + index} paint={{
+                    'circle-color': "rgb(255,0,0)",
+                    'circle-stroke-color': 'rgb(255,0,0)',
+                    'circle-stroke-width': width,
+                    'circle-opacity': opacity,
+                    'circle-stroke-opacity': opacity
+                }}>
+                    <Feature coordinates={[parseFloat(newData.longitude), parseFloat(newData.latitude)]}/>
+                </Layer>
+            )
         });
+    }, [dataSet]);
 
-        // Add zoom and rotation controls to the map.
-        map.addControl(new mapBoxGL.NavigationControl());
-
-        map.on('move', () => {
-            setInfos({
-                lng: parseInt(map.getCenter().lng.toFixed(4)),
-                lat: parseInt(map.getCenter().lat.toFixed(4)),
-                zoom: parseInt(map.getZoom().toFixed(2))
-            })
-        });
-    }, []);
 
     return (
-        <div>
-            <span>Covid-19</span>
-            <div ref={(el: any) => mapContainer.current = el} className="mapContainer"/>
+        <div className="mapContainer">
+            <Map
+                center={[infos.lng, infos.lat]}
+                zoom={[infos.zoom]}
+                style="mapbox://styles/mapbox/dark-v10"
+                containerStyle={{
+                    height: '100vh',
+                    width: '100vw'
+                }}
+            >
+                <>
+                    <ZoomControl/><RotationControl/><ZoomControl/>
+                    {features}
+                </>
+            </Map>
         </div>
     );
 }
