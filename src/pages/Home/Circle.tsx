@@ -25,8 +25,8 @@ const Circle = ({index, newData, selected, setSelected, max}: IProps) => {
 
             'circle-stroke-width': width,
 
-            'circle-greenRate': 0.8,
-            'circle-stroke-greenRate': 0.8
+            'circle-opacity': 0.8,
+            'circle-stroke-opacity': 0.8
         }}>
             <Feature
                 coordinates={[parseFloat(newData.longitude), parseFloat(newData.latitude)]}
