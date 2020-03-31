@@ -2,13 +2,33 @@ import React, {useMemo, useState} from 'react';
 import ReactMapboxGl, {RotationControl, ZoomControl} from 'react-mapbox-gl';
 import {mapConfig} from "../../config";
 import Circles from './Circles';
-import CardInfo from './CardInfo';
+import CardInfo, {CardProps} from './CardInfo';
 import useController from "./Controller";
 import styled from "styled-components";
+import {Data} from "../../api/Statistics/models";
 
 function Home() {
 
     const {statistics} = useController();
+
+    const totalStatistics = useMemo<CardProps>(() => {
+        // @ts-ignore
+        return statistics.data?.reduce<CardProps>(function (previousValue: CardProps, currentValue: Data) {
+            return (
+                {
+                    activeCases: previousValue.activeCases + currentValue.activeCases,
+                    deathsCases: 0,
+                    excludedCases: 0,
+                    recoveredCases: 0
+                });
+        }, {
+            activeCases: 0,
+            deathsCases: 0,
+            excludedCases: 0,
+            recoveredCases: 0
+        });
+
+    }, [statistics]);
 
     const [infos,] = useState({
         lng: -8,
@@ -38,7 +58,7 @@ function Home() {
                     >
                         <ZoomControl/><RotationControl/><ZoomControl/>
                         <Circles dataSet={statistics.data!}/>
-                        <CardInfo/>
+                        <CardInfo {...totalStatistics}/>
                     </Map>
             }
         </Container>

@@ -1,32 +1,39 @@
 import React from "react";
 import styled from "styled-components";
 
+export interface CardProps {
+    activeCases: number;
+    deathCases: number;
+    recoveredCases: number;
+    excludedCases: number;
 
-const CardInfo = () => {
+}
+
+const CardInfo = ({activeCases = 0, deathCases = 0, recoveredCases = 0, excludedCases = 0}: CardProps) => {
     return (
         <Container>
             <Title>INFORMATION CORONAVIRUS MAROC</Title>
             <Line>
                 <Element theme={{isRed: true}}>
-                    794,958
+                    {activeCases}
                 </Element>
                 <b>confirmed cases</b>
             </Line>
             <Line>
                 <Element theme={{isRed: true}}>
-                    38,588
+                    {deathCases}
                 </Element>
                 <b>reported deaths</b>
             </Line>
             <Line>
                 <Element>
-                    164,338
+                    {recoveredCases}
                 </Element>
                 <b>recovered*</b>
             </Line>
             <Line>
                 <Element>
-                    14,338
+                    {excludedCases}
                 </Element>
                 <b>excluded cases</b>
             </Line>
@@ -40,7 +47,7 @@ const Container = styled.div`
     display :block;
     position: absolute;
     font-size: 12px;
-    bottom: 10px;
+    bottom: 25px;
     right: 10px;
     padding: 10px;
     background-color: white;
