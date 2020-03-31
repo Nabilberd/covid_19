@@ -6,6 +6,8 @@ import CardInfo, {CardProps} from './CardInfo';
 import useController from "./Controller";
 import styled from "styled-components";
 import {Data} from "../../api/Statistics/models";
+import {ICenter} from "./models";
+
 
 function Home() {
 
@@ -36,11 +38,9 @@ function Home() {
 
     }, [statistics]);
 
-    const [infos,] = useState({
-        lng: -8,
-        lat: 29,
-        cases: 10,
-        zoom: 4.6,
+    const [infos, setCenter] = useState<ICenter>({
+        longitude: -8,
+        latitude: 29
     });
 
     const Map = useMemo(() => ReactMapboxGl({
@@ -54,8 +54,8 @@ function Home() {
                     <div><span>Error</span></div>
                     :
                     <Map
-                        center={[infos.lng, infos.lat]}
-                        zoom={[infos.zoom]}
+                        center={[infos.longitude, infos.latitude]}
+                        zoom={[4.5]}
                         style="mapbox://styles/mapbox/dark-v10"
                         containerStyle={{
                             height: '100vh',
@@ -63,8 +63,8 @@ function Home() {
                         }}
                     >
                         <ZoomControl/><RotationControl/><ZoomControl/>
-                        <Circles dataSet={statistics.data!}/>
                         <CardInfo {...totalStatistics}/>
+                        <Circles dataSet={statistics.data!} setCenter={setCenter}/>
                     </Map>
             }
         </Container>
