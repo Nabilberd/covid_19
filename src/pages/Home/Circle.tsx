@@ -14,18 +14,19 @@ interface IProps {
 const Circle = ({index, newData, selected, setSelected, max}: IProps) => {
 
     // @ts-ignore
-    const opacity: number = newData.activeCases / max;
+    const greenRate: number = 255 - newData.activeCases * 255 / max;
     // @ts-ignore
     const width: number = newData.activeCases * 20 / max;
+    console.log(greenRate);
     return <>
         <Layer type="circle" id={"marker" + index} paint={{
-            'circle-color': "rgb(255,0,0)",
-            'circle-stroke-color': 'rgb(255,0,0)',
+            'circle-color': `rgb(255,  ${greenRate},0)`,
+            'circle-stroke-color': `rgb(255,  ${greenRate},0)`,
 
             'circle-stroke-width': width,
 
-            'circle-opacity': opacity,
-            'circle-stroke-opacity': opacity
+            'circle-greenRate': 0.8,
+            'circle-stroke-greenRate': 0.8
         }}>
             <Feature
                 coordinates={[parseFloat(newData.longitude), parseFloat(newData.latitude)]}
