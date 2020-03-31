@@ -1,10 +1,13 @@
 import Statistics from "./Statistics";
 import {apis} from "../config";
 
+interface IConfig {
+    statistics: string
+}
 export class Client {
     private static client: Client;
     public statistics: Statistics;
-    private config: any;
+    private config: IConfig;
 
     private constructor(config: any) {
         this.config = config;

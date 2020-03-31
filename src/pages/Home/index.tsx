@@ -18,22 +18,23 @@ function Home() {
     const Map = useMemo(() => ReactMapboxGl({
         accessToken: mapConfig.accessToken
     }), []);
-    debugger;
     return (
         <div className="mapContainer">
             {statistics.state === "loading" ?
                 <div><span>Loading ...</span></div>
-                :
-                <Map
-                    center={[infos.lng, infos.lat]}
-                    zoom={[infos.zoom]}
-                    style="mapbox://styles/mapbox/dark-v10"
-                    containerStyle={{
-                        height: '100vh',
-                        width: '100vw'
-                    }}
-                >
-                    <ZoomControl/><RotationControl/><ZoomControl/>
+                : statistics.state === "error" ?
+                    <div><span>Error</span></div>
+                    :
+                    <Map
+                        center={[infos.lng, infos.lat]}
+                        zoom={[infos.zoom]}
+                        style="mapbox://styles/mapbox/dark-v10"
+                        containerStyle={{
+                            height: '100vh',
+                            width: '100vw'
+                        }}
+                    >
+                        <ZoomControl/><RotationControl/><ZoomControl/>
                     <Circles dataSet={statistics.data!}/>
                 </Map>
             }

@@ -4,17 +4,17 @@ import {Data} from "./models";
 
 export default class Statistics extends Api {
 
-    private readonly urlPath: String;
+    private readonly urlPath: string;
 
 
-    constructor(urlPath: String) {
+    constructor(urlPath: string) {
         super();
         this.urlPath = urlPath
     }
 
-    async getStatistics(): Promise<Data[]> {
-        return this.getFakeStatistics();
-        //return super.request<Data[]>(this.urlPath, undefined);
+    getStatistics(): Promise<Data[]> {
+        //return this.getFakeStatistics();
+        return super.request<Data[]>(this.urlPath, {});
     }
 
     getFakeStatistics(): Data[] {
