@@ -1,13 +1,14 @@
-import React, { useMemo, useState } from 'react';
-import ReactMapboxGl, { RotationControl, ZoomControl } from 'react-mapbox-gl';
-import { mapConfig } from "../../config";
+import React, {useMemo, useState} from 'react';
+import ReactMapboxGl, {RotationControl, ZoomControl} from 'react-mapbox-gl';
+import {mapConfig} from "../../config";
 import Circles from './Circles';
 import CardInfo from './CardInfo';
 import useController from "./Controller";
+import styled from "styled-components";
 
 function Home() {
 
-    const { statistics } = useController();
+    const {statistics} = useController();
 
     const [infos,] = useState({
         lng: -8,
@@ -20,7 +21,7 @@ function Home() {
         accessToken: mapConfig.accessToken
     }), []);
     return (
-        <div className="mapContainer">
+        <Container>
             {statistics.state === "loading" ?
                 <div><span>Loading ...</span></div>
                 : statistics.state === "error" ?
@@ -35,13 +36,21 @@ function Home() {
                             width: '100vw'
                         }}
                     >
-                        <ZoomControl /><RotationControl /><ZoomControl />
-                        <Circles dataSet={statistics.data!} />
-                        <CardInfo />
+                        <ZoomControl/><RotationControl/><ZoomControl/>
+                        <Circles dataSet={statistics.data!}/>
+                        <CardInfo/>
                     </Map>
             }
-        </div>
+        </Container>
     );
 }
+
+const Container = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+`;
 
 export default Home;
