@@ -12,21 +12,27 @@ function Home() {
     const {statistics} = useController();
 
     const totalStatistics = useMemo<CardProps>(() => {
-        // @ts-ignore
-        return statistics.data?.reduce<CardProps>(function (previousValue: CardProps, currentValue: Data) {
-            return (
-                {
-                    activeCases: previousValue.activeCases + currentValue.activeCases,
-                    deathsCases: 0,
-                    excludedCases: 0,
-                    recoveredCases: 0
-                });
-        }, {
+        if (statistics.data && statistics.data!.length > 0)
+            return statistics.data?.reduce<CardProps>(function (previousValue: CardProps, currentValue: Data) {
+                return (
+                    {
+                        activeCases: previousValue.activeCases! + currentValue.activeCases,
+                        deathCases: 0,
+                        excludedCases: 0,
+                        recoveredCases: 0
+                    });
+            }, {
+                activeCases: 0,
+                deathCases: 0,
+                excludedCases: 0,
+                recoveredCases: 0
+            });
+        return ({
             activeCases: 0,
-            deathsCases: 0,
+            deathCases: 0,
             excludedCases: 0,
             recoveredCases: 0
-        });
+        })
 
     }, [statistics]);
 
