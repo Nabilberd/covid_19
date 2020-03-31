@@ -1,12 +1,13 @@
-import React, {useMemo, useState} from 'react';
-import ReactMapboxGl, {RotationControl, ZoomControl} from 'react-mapbox-gl';
-import {mapConfig} from "../../config";
+import React, { useMemo, useState } from 'react';
+import ReactMapboxGl, { RotationControl, ZoomControl } from 'react-mapbox-gl';
+import { mapConfig } from "../../config";
 import Circles from './Circles';
+import CardInfo from './CardInfo';
 import useController from "./Controller";
 
 function Home() {
 
-    const {statistics} = useController();
+    const { statistics } = useController();
 
     const [infos,] = useState({
         lng: -8,
@@ -34,9 +35,10 @@ function Home() {
                             width: '100vw'
                         }}
                     >
-                        <ZoomControl/><RotationControl/><ZoomControl/>
-                    <Circles dataSet={statistics.data!}/>
-                </Map>
+                        <ZoomControl /><RotationControl /><ZoomControl />
+                        <Circles dataSet={statistics.data!} />
+                        <CardInfo />
+                    </Map>
             }
         </div>
     );
