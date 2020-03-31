@@ -33,8 +33,7 @@ const Circles = ({dataSet, setCenter}: IProps) => {
                         }
                     }}/>
             )
-        };)}
+        })}
     </>
 };
 export default Circles;
-;
