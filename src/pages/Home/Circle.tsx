@@ -13,6 +13,7 @@ interface IProps {
 
 const Circle = ({index, newData, selected, setSelected, max}: IProps) => {
 
+    if (newData.activeCases === 0) return null;
     // @ts-ignore
     const greenRate: number = 255 - newData.activeCases * 255 / max;
     // @ts-ignore
@@ -41,6 +42,9 @@ const Circle = ({index, newData, selected, setSelected, max}: IProps) => {
                 <div>
                     <p>
                         <b>Region : </b> {newData.label}
+                    </p>
+                    <p>
+                        <b>Active cases : </b> {newData.activeCases}
                     </p>
                 </div>
             </Popup>
