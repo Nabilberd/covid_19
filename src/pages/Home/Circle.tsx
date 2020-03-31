@@ -12,11 +12,8 @@ interface IProps {
 
 
 const Circle = ({index, newData, selected, setSelected, max}: IProps) => {
-
     if (newData.activeCases === 0) return null;
-    // @ts-ignore
     const greenRate: number = 255 - newData.activeCases * 255 / max;
-    // @ts-ignore
     const width: number = newData.activeCases * 20 / max;
     console.log(greenRate);
     return <>
