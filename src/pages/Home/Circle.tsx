@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import {Feature, Layer, Popup} from "react-mapbox-gl";
 import {IRegion} from "../../api/Statistics/models";
 
@@ -38,10 +39,10 @@ const Circle = ({index, newData, selected, setSelected, max}: IProps) => {
             >
                 <div>
                     <p>
-                        <b>Region : </b> {newData.label}
+                        <b>Région : {newData.label}</b> 
                     </p>
                     <p>
-                        <b>Active cases : </b> {newData.activeCases}
+                        <b>Cas actifs : </b> <Element>{newData.activeCases}</Element>
                     </p>
                 </div>
             </Popup>
@@ -49,5 +50,12 @@ const Circle = ({index, newData, selected, setSelected, max}: IProps) => {
     </>
 
 };
+
+const Element = styled.span`
+    color: red;
+    font-family : tahoma;
+    font-size : 15px;
+    font-weight : bolder;
+`;
 
 export default Circle;
