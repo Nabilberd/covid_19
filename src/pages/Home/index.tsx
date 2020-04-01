@@ -18,6 +18,10 @@ function Home() {
         latitude: 29
     });
 
+    let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+
+    const morocoData = statistics.state != "error" &&  statistics.state != "loading" ? statistics.data!.countries[0] :null ;
+
     const Map = useMemo(() => ReactMapboxGl({
         accessToken: mapConfig.accessToken
     }), []);
@@ -30,7 +34,7 @@ function Home() {
                     :
                     <Map
                         center={[infos.longitude, infos.latitude]}
-                        zoom={[4.5]}
+                        zoom={[!isMobile ? 4.5 : 3.7]}
                         style="mapbox://styles/mapbox/dark-v10"
                         containerStyle={{
                             height: '100%',
@@ -38,7 +42,13 @@ function Home() {
                         }}
                     >
                         <ZoomControl/><RotationControl/><ZoomControl/>
-                        <CardInfo activeCases={0} deathCases={0} excludedCases={0} recoveredCases={0}/>
+                        <CardInfo 
+                            activeCases={morocoData!.totalActive} 
+                            deathCases={morocoData!.totalDied} 
+                            excludedCases={morocoData!.totalExclus} 
+                            recoveredCases={morocoData!.totalRecovered}
+                            lastModifiedDate={morocoData!.lastModifiedDate}
+                        />
                         <>
                             {statistics.data!.countries.map(value => {
                                 return <Circles dataSet={value.regions} setCenter={setCenter}/>
