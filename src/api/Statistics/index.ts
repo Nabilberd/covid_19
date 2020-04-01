@@ -1,5 +1,5 @@
 import Api from "../Api";
-import {Data} from "./models";
+import {ICountry, IRegion, IStatistics} from "./models";
 
 
 export default class Statistics extends Api {
@@ -12,12 +12,12 @@ export default class Statistics extends Api {
         this.urlPath = urlPath
     }
 
-    getStatistics(): Promise<Data[]> {
+    getStatistics(): Promise<IStatistics> {
         //return this.getFakeStatistics();
-        return super.request<Data[]>(this.urlPath, {});
+        return super.request<ICountry[]>(this.urlPath, {}).then((value) => ({countries: value}));
     }
 
-    getFakeStatistics(): Data[] {
+    getFakeStatistics(): IRegion[] {
         return [
             {
                 id: "1",

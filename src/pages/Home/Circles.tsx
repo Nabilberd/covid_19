@@ -1,20 +1,20 @@
 import Circle from "./Circle";
 import React, {useState} from "react";
-import {Data} from "../../api/Statistics/models";
+import {IRegion} from "../../api/Statistics/models";
 import {ICenter} from "./models";
 
 interface IProps {
-    dataSet: Data[],
+    dataSet: IRegion[],
     setCenter: (center: ICenter) => void
 }
 
 const Circles = ({dataSet, setCenter}: IProps) => {
     const [selected, setSelected] = useState(-1);
-    const max = dataSet.reduce<number>((previousValue: number, currentValue: Data) => {
+    const max = dataSet.reduce<number>((previousValue: number, currentValue: IRegion) => {
         return Math.max(previousValue, currentValue.activeCases)
     }, 0);
     return <>
-        {dataSet.map((newData: Data, index: number) => {
+        {dataSet.map((newData: IRegion, index: number) => {
             return (
                 <Circle
                     index={index}

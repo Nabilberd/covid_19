@@ -1,10 +1,10 @@
 import React from "react";
 import {Feature, Layer, Popup} from "react-mapbox-gl";
-import {Data} from "../../api/Statistics/models";
+import {IRegion} from "../../api/Statistics/models";
 
 interface IProps {
     index: number;
-    newData: Data;
+    newData: IRegion;
     selected: boolean;
     setSelected: () => void;
     max: number;
