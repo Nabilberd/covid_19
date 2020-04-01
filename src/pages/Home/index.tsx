@@ -40,7 +40,7 @@ function Home() {
                         style="mapbox://styles/mapbox/dark-v10"
                         containerStyle={{
                             height: '100%',
-                            width: '100%s'
+                            width: '100%'
                         }}
                     >
                         <ZoomControl/><RotationControl/><ZoomControl/>

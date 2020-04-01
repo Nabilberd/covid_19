@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import labels from "../../config/labels";
+import moment from "moment";
 
 export interface CardProps {
     activeCases: number;
@@ -38,7 +39,7 @@ const CardInfo = ({lastModifiedDate, activeCases = 0, deathCases = 0, recoveredC
                 </Element>
                 <b>{labels.excludedCases}</b>
             </Line>
-            <Center>Last updated <b>{lastModifiedDate}</b></Center>
+            <Center>Last updated <b>{moment(lastModifiedDate).format('DD/MM/YYYY hh:mm:ss')}</b></Center>
             <Divider/>
             <div>Source: <a href="http://www.covidmaroc.ma">covidmaroc.ma</a></div>
         </Container>
