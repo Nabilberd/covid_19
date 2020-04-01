@@ -20,7 +20,9 @@ function Home() {
 
     let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
 
-    const morocoData = statistics.state != "error" &&  statistics.state != "loading" ? statistics.data!.countries[0] :null ;
+    const moroccoData: any = useMemo(() => {
+        return statistics.state === "success" ? statistics.data!.countries[0] : {}
+    }, [statistics.data]);
 
     const Map = useMemo(() => ReactMapboxGl({
         accessToken: mapConfig.accessToken
@@ -42,12 +44,12 @@ function Home() {
                         }}
                     >
                         <ZoomControl/><RotationControl/><ZoomControl/>
-                        <CardInfo 
-                            activeCases={morocoData!.totalActive} 
-                            deathCases={morocoData!.totalDied} 
-                            excludedCases={morocoData!.totalExclus} 
-                            recoveredCases={morocoData!.totalRecovered}
-                            lastModifiedDate={morocoData!.lastModifiedDate}
+                        <CardInfo
+                            activeCases={moroccoData.totalActive}
+                            deathCases={moroccoData.totalDied}
+                            excludedCases={moroccoData.totalExclus}
+                            recoveredCases={moroccoData.totalRecovered}
+                            lastModifiedDate={moroccoData.lastModifiedDate}
                         />
                         <>
                             {statistics.data!.countries.map(value => {

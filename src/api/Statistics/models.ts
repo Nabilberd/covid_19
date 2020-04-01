@@ -6,7 +6,6 @@ export interface IRegion {
     deathsCases: number;
     recoveredCases: number;
     label: string;
-
 }
 
 export interface IStatistics {
