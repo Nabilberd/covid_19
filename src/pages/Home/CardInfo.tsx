@@ -1,43 +1,45 @@
 import React from "react";
 import styled from "styled-components";
+import labels from "../../config/labels";
+import moment from "moment";
 
 export interface CardProps {
     activeCases: number;
     deathCases: number;
     recoveredCases: number;
     excludedCases: number;
-
+    lastModifiedDate: Date
 }
 
-const CardInfo = ({activeCases = 0, deathCases = 0, recoveredCases = 0, excludedCases = 0}: CardProps) => {
+const CardInfo = ({lastModifiedDate, activeCases = 0, deathCases = 0, recoveredCases = 0, excludedCases = 0}: CardProps) => {
     return (
         <Container>
-            <Title>INFORMATION CORONAVIRUS MAROC</Title>
+            <Title>CORONAVIRUS MAROC</Title>
             <Line>
                 <Element theme={{isRed: true}}>
                     {activeCases}
                 </Element>
-                <b>confirmed cases</b>
+                <b>{labels.activeCases}</b>
             </Line>
             <Line>
                 <Element theme={{isRed: true}}>
                     {deathCases}
                 </Element>
-                <b>reported deaths</b>
+                <b>{labels.deathCases}</b>
             </Line>
             <Line>
                 <Element>
                     {recoveredCases}
                 </Element>
-                <b>recovered*</b>
+                <b>{labels.recoveredCases}</b>
             </Line>
             <Line>
                 <Element>
                     {excludedCases}
                 </Element>
-                <b>excluded cases</b>
+                <b>{labels.excludedCases}</b>
             </Line>
-            <Center>Last updated Mar 31, 2020</Center>
+            <Center>Last updated <b>{moment(lastModifiedDate).format('DD/MM/YYYY hh:mm:ss')}</b></Center>
             <Divider/>
             <div>Source: <a href="http://www.covidmaroc.ma">covidmaroc.ma</a></div>
         </Container>
@@ -75,7 +77,7 @@ const Divider = styled.div`
     border-bottom: 3px solid #cccccc;
 `;
 const Center = styled.div`
-    display : flex;
+    display: inline-grid;
     flex-direction: row;
     justify-content : center;
 `;

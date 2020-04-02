@@ -14,7 +14,6 @@ export default function useController() {
 
     useEffect(() => {
         Client.getInstance().statistics.getStatistics().then((value: IStatistics) => {
-            debugger;
             setStatistics({state: 'success', data: value});
         }).catch((e) => {
             setStatistics({state: 'error'});
