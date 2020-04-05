@@ -39,7 +39,7 @@ const CardInfo = ({lastModifiedDate, activeCases = 0, deathCases = 0, recoveredC
                 </Element>
                 <b>{labels.excludedCases}</b>
             </Line>
-            <Center>Last updated <b>{moment(lastModifiedDate).format('DD/MM/YYYY hh:mm:ss')}</b></Center>
+            <Center>Last updated <LastDate>{moment(lastModifiedDate).format('DD/MM/YYYY HH:mm:ss')}</LastDate></Center>
             <Divider/>
             <div>Source: <a href="http://www.covidmaroc.ma">covidmaroc.ma</a></div>
         </Container>
@@ -80,6 +80,11 @@ const Center = styled.div`
     display: inline-grid;
     flex-direction: row;
     justify-content : center;
+`;
+const LastDate = styled.div`
+    font-size: larger;
+    font-family: sans-serif;
+    font-weight: 600;
 `;
 
 export default CardInfo;

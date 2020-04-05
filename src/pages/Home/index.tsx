@@ -2,6 +2,7 @@ import React, {useMemo, useState} from 'react';
 import ReactMapboxGl, {RotationControl, ZoomControl} from 'react-mapbox-gl';
 import {mapConfig} from "../../config";
 import Circles from './Circles';
+import Loading from './Loading';
 import useController from "./Controller";
 import styled from "styled-components";
 import {ICenter} from "./models";
@@ -11,7 +12,6 @@ import CardInfo from "./CardInfo";
 function Home() {
 
     const {statistics} = useController();
-
 
     const [infos, setCenter] = useState<ICenter>({
         longitude: -8,
@@ -30,7 +30,7 @@ function Home() {
     return (
         <Container>
             {statistics.state === "loading" ?
-                <Center><span>Loading ...</span></Center>
+                <Loading />
                 : statistics.state === "error" ?
                     <Center><span>Error</span></Center>
                     :
