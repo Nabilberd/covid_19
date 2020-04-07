@@ -1,47 +1,53 @@
 import React from "react";
 import styled from "styled-components";
-import labels from "../../config/labels";
 import moment from "moment";
+
+import { useTranslation, getDirection } from '../../strings';
 
 export interface CardProps {
     activeCases: number;
     deathCases: number;
     recoveredCases: number;
     excludedCases: number;
-    lastModifiedDate: Date
+    lastModifiedDate: Date;
 }
 
 const CardInfo = ({lastModifiedDate, activeCases = 0, deathCases = 0, recoveredCases = 0, excludedCases = 0}: CardProps) => {
+    
+    const { Strings} = useTranslation();
+
+    const Direction = getDirection();
+
     return (
-        <Container>
-            <Title>CORONAVIRUS MAROC</Title>
+        <Container dir={Direction}>
+            <Title>{Strings}</Title>
             <Line>
                 <Element theme={{isRed: true}}>
                     {activeCases}
                 </Element>
-                <b>{labels.activeCases}</b>
+                <b>{Strings("activeCases")}</b>
             </Line>
             <Line>
                 <Element theme={{isRed: true}}>
                     {deathCases}
                 </Element>
-                <b>{labels.deathCases}</b>
+                <b>{Strings("deathCases")}</b>
             </Line>
             <Line>
                 <Element>
                     {recoveredCases}
                 </Element>
-                <b>{labels.recoveredCases}</b>
+                <b>{Strings("recoveredCases")}</b>
             </Line>
             <Line>
                 <Element>
                     {excludedCases}
                 </Element>
-                <b>{labels.excludedCases}</b>
+                <b>{Strings("excludedCases")}</b>
             </Line>
-            <Center>Last updated <LastDate>{moment(lastModifiedDate).format('DD/MM/YYYY HH:mm:ss')}</LastDate></Center>
+            <Center>{Strings("labelDate")} <LastDate>{moment(lastModifiedDate).format('DD/MM/YYYY HH:mm:ss')}</LastDate></Center>
             <Divider/>
-            <div>Source: <a href="http://www.covidmaroc.ma">covidmaroc.ma</a></div>
+            <div>{Strings("source")}: <a href="http://www.covidmaroc.ma">covidmaroc.ma</a></div>
         </Container>
     )
 };
