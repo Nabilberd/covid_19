@@ -20,7 +20,7 @@ const CardInfo = ({lastModifiedDate, activeCases = 0, deathCases = 0, recoveredC
 
     return (
         <Container dir={Direction}>
-            <Title>{Strings}</Title>
+            <Title>{Strings("title")}</Title>
             <Line>
                 <Element theme={{isRed: true}}>
                     {activeCases}
