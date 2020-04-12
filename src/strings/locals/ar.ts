@@ -8,6 +8,12 @@ const ar : IStrings = {
   "title": "الرصد الصحي بالمغرب",
   "labelDate": "اخر تحديث",
   "source": "المصدر",
+  "cas":"حالة جديدة",
+  "titleChartActive": "منحنى تطور الحالات المؤكدة",
+  "titleChartDeath": "منحنى تطور حالة الوفاة",
+  "titleChartRecovered": "منحنى تطور حالة الشفاء",
+  "titleChartExcluded": "منحنى تطور الحالات المستبعدة",
+  "dateLabel": "تاريخ اليوم",
   "language": "Version française"
 };
 

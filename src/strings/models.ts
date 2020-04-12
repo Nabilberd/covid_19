@@ -4,7 +4,13 @@ export interface IStrings {
     recoveredCases: string,
     excludedCases: string,
     title: string,
+    cas: string,
     language: string,
     labelDate: string,
     source: string,
+    titleChartActive: string;
+    titleChartDeath: string;
+    titleChartRecovered: string;
+    titleChartExcluded: string;
+    dateLabel: string;
 }
