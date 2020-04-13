@@ -62,14 +62,11 @@ function Home() {
                             }}
                             onStyleLoad={changeMap}
                         >
-                            <ZoomControl /><RotationControl /><ZoomControl />
-
                             <>
                                 {statistics.data!.countries.map((value: any) => {
                                     return <Circles dataSet={value.regions} setCenter={setCenter} />
                                 })}
                             </>
-
                         </Map>
 
                         {language === "fr" ?
