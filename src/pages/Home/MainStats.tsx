@@ -2,10 +2,14 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import moment from "moment";
 import Grid from '@material-ui/core/Grid';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
 
 import ChartLine from './Chart'
 import { useTranslation } from '../../strings';
 import data from '../../data/data.json'
+import { CardContent } from '@material-ui/core';
 
 interface IElem {
     elemProp: "Nouveauxcaspositifs" | "NouveauCasnégatifs" | "NouveauCasdécédés" | "NouveauCasrétablis";
@@ -58,7 +62,7 @@ export default function MainStats({lastModifiedDate, activeCases = 0, deathCases
             </ContainerRegion>
             <Grid container style={{marginBottom: 28}} spacing={0}>
                 <Grid item xs={12}>
-                    <Grid container justify="center" style={{justifyContent: "space-around"}} spacing={0}>
+                    <Grid container item justify="center" style={{justifyContent: "space-around"}} spacing={0}>
                         {
                             listItem.map((metric, index) => {
                                 const count = '—'
@@ -66,16 +70,22 @@ export default function MainStats({lastModifiedDate, activeCases = 0, deathCases
                                 let diff = lastMetric[elemPro];
 
                                 return (
-                                    <ContainerItem key={`${index}-number`} style={{float : index%2 ===0 ? "left" : "right"}} >
-                                        <CountNumber style={{color: metric.color}}>{metric.numberCalc}{metric.id==="NouveauCasdécédés" ? "("+ countDeath +"%)" : metric.id==="NouveauCasrétablis" ? "("+ countRecovered +"%)" : "" } </CountNumber>
-                                        <CountTitle onClick={() => { setSelected(index); setMetric(metric) }} style= {{backgroundColor: selected===index ? metric.color : "#504d4d" }}>{metric.label}</CountTitle>
-                                        <CountDaily>
-                                            {diff != null &&
-                                                !isNaN(diff) && (
-                                                    <span>{`${diff >= 0 ? '+' : ''}${diff} ${Strings("cas")}`}</span>
-                                                )}
-                                        </CountDaily>
-                                    </ContainerItem>
+                                    <Grid item xs={!isMobile ? "auto" : 5} spacing={2}>
+                                        <Card variant="elevation" elevation={11} raised style={styleCard}>
+                                        <CardContent style={{paddingBottom: "3px"}}>
+                                            <ContainerItem key={`${index}-number`} style={{float : index%2 ===0 ? "left" : "right"}} >
+                                                <CountNumber style={{fontSize : index%2 ===0 ? "24px" : "22px", color: metric.color}}>{metric.numberCalc}{metric.id==="NouveauCasdécédés" ? "("+ countDeath +"%)" : metric.id==="NouveauCasrétablis" ? "("+ countRecovered +"%)" : "" } </CountNumber>
+                                                <CountTitle onClick={() => { setSelected(index); setMetric(metric) }} style= {{backgroundColor: selected===index ? metric.color : "#504d4d" }}>{metric.label}</CountTitle>
+                                                <CountDaily>
+                                                    {diff != null &&
+                                                        !isNaN(diff) && (
+                                                            <EvolutionGrid style={{display: 'contents'}}>{`${diff >= 0 ? '+' : ''}${diff}`} <TrendingUpIcon /></EvolutionGrid>
+                                                        )}
+                                                </CountDaily>
+                                            </ContainerItem>
+                                        </CardContent>
+                                    </Card> 
+                                    </Grid>
                                 )
                             })
                         }
@@ -86,8 +96,14 @@ export default function MainStats({lastModifiedDate, activeCases = 0, deathCases
         </>
     )
 }
+const styleCard ={
+    transition: "all .25s linear", 
+    backgroundColor: "initial",
+    width: "auto",
+    height: "auto"
+};
 const ContainerRegion = styled.div`
-    margin: 50px 0px 35px 0;
+    margin: 45px 0px 35px 0;
     max-width: 100%;
 `;
 const ContainerLabel = styled.div`
@@ -117,14 +133,14 @@ const ContainerStats = styled.div`
     margin-right: auto;
 `;
 const ContainerItem = styled.div`
-    display: flex;
+    display: contents;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     cursor: default;
 `;
 const CountNumber = styled.div`
-    font-size: 27px;
+    font-size: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,6 +148,8 @@ const CountNumber = styled.div`
     font-weight: 600;
 `;
 const CountTitle = styled.div`
+    margin-left: auto;
+    margin-right: auto;
     text-transform: uppercase;
     background-color: #504d4d;
     color: #eee;
@@ -144,6 +162,15 @@ const CountTitle = styled.div`
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: all .3s;
+    user-select: none;    
+    &:hover{
+		transform: scale(1.1);
+	}
+	
+	&:active{
+		transform: scale(1.1);
+	}
 `;
 const CountDaily = styled.div`
     display: flex;
@@ -156,4 +183,9 @@ const CountDaily = styled.div`
     font-weight: 600;
     font-size: 13px;
 `;
-
+const EvolutionGrid = styled.span`
+    font-size: medium;
+    display: contents;
+    font-family: sans-serif;
+    font-weight: 600;
+`;
