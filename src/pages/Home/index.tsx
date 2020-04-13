@@ -31,7 +31,25 @@ function Home() {
         accessToken: mapConfig.accessToken
     }), []);
 
-    const changeMap = (map: any) => {
+    const changeMap = (map: any) => {    
+        var adminLayers = [
+            'admin-0-boundary',
+            'admin-1-boundary',
+            'admin-0-boundary-disputed',
+            'admin-1-boundary-bg',
+            'admin-0-boundary-bg'
+        ];
+        adminLayers.forEach(function(adminLayer) {
+            map.setFilter(adminLayer, [
+                "match",
+                ["get", "disputed"],
+                ["false"],
+                true,
+                false
+            ]);
+        });
+    
+
         map.setLayoutProperty('country-label', 'text-field', [
             'get',
             'null'
