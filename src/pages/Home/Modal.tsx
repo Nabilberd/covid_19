@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -8,14 +8,22 @@ import TextField from '@material-ui/core/TextField';
 
 import useControllerMail from "./MailController";
 
-import { useTranslation, getDirection } from '../../strings';
-
+import {getDirection, useTranslation} from '../../strings';
 
 
 function Modal ({open, handleClose, setOpen} : any) {
 
-    const { Strings } = useTranslation();
+    const {Strings} = useTranslation();
     const Direction = getDirection();
+
+    const {sendMail, mail} = useControllerMail();
+
+    useEffect(() => {
+        if (mail.state === "success") {
+            setOpen(false);
+        }
+    }, [mail, setOpen])
+
 
     const [text, setText] = React.useState("");
     const [label, setLabel] = React.useState("");
@@ -28,15 +36,14 @@ function Modal ({open, handleClose, setOpen} : any) {
         setLabel(event.target.value);
     };
 
-    const handleSubmit = () => {
-        const {mail} = useControllerMail({adress: text, description: label});
-        console.log(text, label, mail)
-        if(mail.response === "success") setOpen(false)
+    const handleSubmit = async () => {
+        sendMail(text, label);
     };
 
     return (
-        <div >
-            <Dialog dir={Direction} onClose={handleClose} aria-labelledby="customized-dialog-title" style={{zIndex: 9999}} open={open}>
+        <div>
+            <Dialog dir={Direction} onClose={handleClose} aria-labelledby="customized-dialog-title"
+                    style={{zIndex: 9999}} open={open}>
                 <DialogTitle id="customized-dialog-title" disableTypography={true}>
                     <span style={{fontSize: "18px", fontWeight: 600}}> {Strings("headerTitle")} </span>
                 </DialogTitle>
