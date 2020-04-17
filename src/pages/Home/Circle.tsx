@@ -16,7 +16,6 @@ const Circle = ({index, newData, selected, setSelected, max}: IProps) => {
     if (newData.activeCases === 0) return null;
     const greenRate: number = 255 - newData.activeCases * 255 / max;
     const width: number = newData.activeCases * 20 / max;
-    console.log(greenRate);
     return <>
         <Layer type="circle" id={"marker" + index} paint={{
             'circle-color': `rgb(255,  ${greenRate},0)`,
@@ -33,9 +32,17 @@ const Circle = ({index, newData, selected, setSelected, max}: IProps) => {
             >
             </Feature>
         </Layer>
-        {selected && (
-            <Popup
+        <Layer id={"text-circle"+ index} type="symbol" layout={{
+            "text-field": newData.activeCases.toString(),
+            "text-size": newData.activeCases > 100 ? 11 : 10,
+        }}>
+            <Feature
                 coordinates={[parseFloat(newData.longitude), parseFloat(newData.latitude)]}
+            />
+        </Layer>
+        {selected && (
+            <Popup offset={2}
+                coordinates={[parseFloat(newData.longitude), parseFloat(newData.latitude)+1/4]}
             >
                 <div>
                     <p>
