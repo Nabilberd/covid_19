@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
-import ReactMapboxGl, { RotationControl, ZoomControl } from 'react-mapbox-gl';
+import ReactMapboxGl, { RotationControl, ZoomControl, MapContext } from 'react-mapbox-gl';
 
+import IconMed from '../../logo/iconMed1.png'
 import Circles from './Circles';
 import Loading from './Loading';
 import useController from "./Controller";
@@ -11,6 +12,7 @@ import { useTranslation, changeLanguage, getLanguage } from '../../strings';
 import ChartLine from './Chart';
 import MainStats from './MainStats';
 import { mapConfig } from "../../config";
+import Modal from './Modal';
 
 function Home() {
 
@@ -21,9 +23,18 @@ function Home() {
     const { Strings } = useTranslation();
 
     const [infos, setCenter] = useState<ICenter>({
-        longitude: -9,
+        longitude: -10,
         latitude: 29
     });
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
 
@@ -86,12 +97,15 @@ function Home() {
                                 })}
                             </>
                         </Map>
-
                         {language === "fr" ?
                             <Button onClick={() => changeLanguage("ar")}>{Strings("language")}</Button>
                             :
                             <Button onClick={() => changeLanguage("fr")}>{Strings("language")}</Button>
                         }
+                        <ButtonModal style={isMobile ? {height: "70px", width: "70px", bottom: "159px", right: "5px"} : {left: "8px"}} onClick={handleClickOpen} >
+                            <img style={isMobile ? {marginRight: "1px", marginTop: "6px", width: "54px"} : {marginRight: "2px", marginTop: "8px", width: '58px'}} src={IconMed} /> 
+                        </ButtonModal>
+                        <Modal open={open} handleClose={handleClose} />
                         <GridStats style={{ width: isMobile ? '100%' : '50%'}}>
                             <MainStats
                                 isMobile={isMobile}
@@ -125,12 +139,27 @@ const DivTab = styled.div`
     border: 0;
     cursor: pointer;
 `;
+const ButtonModal =styled.div`
+    z-index: 9999;
+    border-radius: 50px;
+    position: absolute;
+    bottom: 26px;
+    padding: 0;
+    height: 73px;
+    line-height: 54px;
+    width: 73px;
+    text-align: center;
+    display: block;
+    margin-top: -27px;
+    box-shadow: 0px 2px 10px 1px rgba(0,0,0,0.5);
+    cursor: pointer;
+    background: none;
+`;
 const Button = styled.button`
     display: block;
     position: absolute;
     font-size: 12px;
     padding: 10px;
-    background-color: white;
     box-shadow: 0px 2px 10px 1px rgba(0,0,0,0.5);
     cursor: pointer;
     z-index: 999;
