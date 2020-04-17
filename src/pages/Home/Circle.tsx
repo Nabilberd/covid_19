@@ -42,7 +42,8 @@ const Circle = ({index, newData, selected, setSelected, max}: IProps) => {
         </Layer>
         {selected && (
             <Popup offset={2}
-                coordinates={[parseFloat(newData.longitude), parseFloat(newData.latitude)+1/4]}
+                style={{top: "-8px"}}
+                coordinates={[parseFloat(newData.longitude), parseFloat(newData.latitude)]}
             >
                 <div>
                     <p>
