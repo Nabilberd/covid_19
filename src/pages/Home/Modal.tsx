@@ -19,8 +19,11 @@ function Modal ({open, handleClose, setOpen} : any) {
     const {sendMail, mail} = useControllerMail();
 
     useEffect(() => {
-        if (mail.state === "success") {
+        if (mail.response === "success") {
             setOpen(false);
+        }
+        if(mail.response === "failed"){
+            setOpen(true);
         }
     }, [mail, setOpen])
 
