@@ -14,6 +14,12 @@ const fr : IStrings = {
   "titleChartRecovered": "Courbe évolution des cas guéris par jour",
   "titleChartExcluded": "Courbe évolution des cas exclus par jour",
   "dateLabel": "Date",
+  "buttonCancel": "Cancel",
+  "buttonConfirm": "Confirmer",
+  "labelEmail": "Phone ou Email",
+  "labelDesc": "Description",
+  "headerTitle": "Consultation médicale sans déplacement",
+  "headerDesc": "Decrire tout ce que vous sentez concernant votre situation actuelle et vous allez recevez un message de la part de notre medecin pour vous expliquez votre état sans se deplacer",
   "language": "النسخة العربية"
 };
 
