@@ -13,4 +13,10 @@ export interface IStrings {
     titleChartRecovered: string;
     titleChartExcluded: string;
     dateLabel: string;
+    buttonCancel: string;
+    buttonConfirm: string;
+    labelEmail: string;
+    labelDesc: string;
+    headerTitle: string;
+    headerDesc: string;
 }

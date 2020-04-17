@@ -14,6 +14,12 @@ const ar : IStrings = {
   "titleChartRecovered": "منحنى تطور حالة الشفاء",
   "titleChartExcluded": "منحنى تطور الحالات المستبعدة",
   "dateLabel": "تاريخ اليوم",
+  "buttonCancel": "إلغاء",
+  "buttonConfirm": "تأكيد",
+  "labelEmail": "رقم الهاتف أو البريد الإلكتروني",
+  "labelDesc": "وصف الوضعية",
+  "headerTitle": "استشارة طبية بدون الخروج",
+  "headerDesc": "قم بوصف كل ما تشعر به  حول اي مشكل صحي وستتلقى رسالة من طبيبنا لتوضيح حالتك دون الخروج من المنزل",
   "language": "Version française"
 };
 

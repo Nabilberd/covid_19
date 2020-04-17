@@ -42,7 +42,7 @@ export default function MainStats({lastModifiedDate, activeCases = 0, deathCases
     let countDeath = Math.round((deathCases / activeCases ) * 1000) / 10;
     let countRecovered = Math.round((recoveredCases / activeCases ) * 1000) / 10;
 
-    const listItem: { id: "Nouveauxcaspositifs" | "NouveauCasnégatifs" | "NouveauCasdécédés" | "NouveauCasrétablis"; label: string; numberCalc: number; color: string; titleChart: string }[] = [
+    const listItem: { id: "Nouveauxcaspositifs" | "NouveauCasnégatifs" | "NouveauCasdécédés" | "NouveauCasrétablis"; label: string; numberCalc: number; color: string; titleChart: string, middle?: number }[] = [
         { id: "Nouveauxcaspositifs", label: Strings("activeCases"), numberCalc: activeCases ,color: "#bd1620", titleChart: "titleChartActive" },
         { id: "NouveauCasdécédés", label: Strings("deathCases"), numberCalc: deathCases ,color: "#bd1620" , titleChart: "titleChartDeath" },
         { id: "NouveauCasnégatifs", label: Strings("excludedCases"), numberCalc: excludedCases , color: "#008000", titleChart: "titleChartExcluded" },
@@ -79,7 +79,7 @@ export default function MainStats({lastModifiedDate, activeCases = 0, deathCases
                                                 <CountDaily>
                                                     {diff != null &&
                                                         !isNaN(diff) && (
-                                                            <EvolutionGrid style={{display: 'contents'}}>{`${diff >= 0 ? '+' : ''}${diff}`} <TrendingUpIcon /></EvolutionGrid>
+                                                            <EvolutionGrid style={{color: metric.color, display: 'contents'}}>{`${diff >= 0 ? '+' : ''}${diff}`} <TrendingUpIcon /></EvolutionGrid>
                                                         )}
                                                 </CountDaily>
                                             </ContainerItem>
