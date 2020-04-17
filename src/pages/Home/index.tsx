@@ -103,7 +103,7 @@ function Home() {
                             <Button onClick={() => changeLanguage("fr")}>{Strings("language")}</Button>
                         }
                         <ButtonModal style={isMobile ? {height: "70px", width: "70px", bottom: "159px", right: "5px"} : {left: "8px"}} onClick={handleClickOpen} >
-                            <img style={isMobile ? {marginRight: "1px", marginTop: "6px", width: "54px", background: "#343332"} : {marginRight: "2px", marginTop: "8px", width: '58px'}} src={IconMed} /> 
+                            <img style={isMobile ? {marginRight: "1px", marginTop: "6px", width: "54px"} : {marginRight: "2px", marginTop: "8px", width: '58px'}} src={IconMed} /> 
                         </ButtonModal>
                         <Modal open={open} handleClose={handleClose} />
                         <GridStats style={{ width: isMobile ? '100%' : '50%'}}>
@@ -153,7 +153,7 @@ const ButtonModal =styled.div`
     margin-top: -27px;
     box-shadow: 0px 2px 10px 1px rgba(0,0,0,0.5);
     cursor: pointer;
-    background: none;
+    background: rgb(52, 51, 50);
 `;
 const Button = styled.button`
     display: block;
