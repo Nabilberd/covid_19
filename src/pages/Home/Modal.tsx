@@ -6,11 +6,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import TextField from '@material-ui/core/TextField';
 
+import useControllerMail from "./MailController";
+
 import { useTranslation, getDirection } from '../../strings';
 
 
 
-const Modal = ({open, handleClose} : any) => {
+function Modal ({open, handleClose, setOpen} : any) {
 
     const { Strings } = useTranslation();
     const Direction = getDirection();
@@ -24,6 +26,12 @@ const Modal = ({open, handleClose} : any) => {
 
     const handleChangeLabel = (event: any) => {
         setLabel(event.target.value);
+    };
+
+    const handleSubmit = () => {
+        const {mail} = useControllerMail({adress: text, description: label});
+        console.log(text, label, mail)
+        if(mail.response === "success") setOpen(false)
     };
 
     return (
@@ -62,7 +70,7 @@ const Modal = ({open, handleClose} : any) => {
                     <Button variant="contained" onClick={handleClose} >
                         {Strings("buttonCancel")}
                     </Button>
-                    <Button variant="contained" disabled={!(label!="" && text!="")} onClick={handleClose} color="primary">
+                    <Button variant="contained" disabled={!(label!="" && text!="")} onClick={handleSubmit} color="primary">
                         {Strings("buttonConfirm")}
                   </Button>
                 </DialogActions>

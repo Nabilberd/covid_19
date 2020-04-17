@@ -3,22 +3,25 @@ import {IRequest, IMail} from "../../api/Mail/models";
 import {Client} from "../../api/Client";
 
 
-interface StatisticsData {
+interface MailData {
     state: 'loading' | 'success' | 'error'
     response?: string
 }
 
-export default function useController(data: IRequest) {
+function useControllerMail({adress, description}: IRequest) {
 
-    const [mailResponse, setMailResponse] = useState<StatisticsData>({state: 'loading'});
+    const [mail, setMail] = useState<MailData>({state: 'loading'});
 
     useEffect(() => {
-        Client.getInstance().mail.postMail(data).then((value: IMail) => {
-            setMailResponse({state: 'success', response: value.response});
+        Client.getInstance().mail.postMail({adress, description}).then((value: IMail) => {
+            setMail({state: 'success', response: value.response});
         }).catch((e) => {
-            setMailResponse({state: 'error'});
+            setMail({state: 'error'});
         })
-    }, []);
+    }, [{adress, description}]);
 
-    return {mailResponse};
+
+    return {mail};
 }
+
+export default useControllerMail;

@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import ReactMapboxGl, { RotationControl, ZoomControl, MapContext } from 'react-mapbox-gl';
 
+import {IMail} from "../../api/Mail/models";
 import IconMed from '../../logo/iconMed1.png'
 import Circles from './Circles';
 import Loading from './Loading';
@@ -13,6 +14,13 @@ import ChartLine from './Chart';
 import MainStats from './MainStats';
 import { mapConfig } from "../../config";
 import Modal from './Modal';
+import {Client} from "../../api/Client";
+
+interface StatisticsData {
+    state: 'loading' | 'success' | 'error'
+    response?: string
+}
+
 
 function Home() {
 
@@ -105,7 +113,7 @@ function Home() {
                         <ButtonModal style={isMobile ? {height: "70px", width: "70px", bottom: "159px", right: "5px"} : {left: "8px"}} onClick={handleClickOpen} >
                             <img style={isMobile ? {marginRight: "1px", marginTop: "6px", width: "54px"} : {marginRight: "2px", marginTop: "8px", width: '58px'}} src={IconMed} /> 
                         </ButtonModal>
-                        <Modal open={open} handleClose={handleClose} />
+                        <Modal open={open} handleClose={handleClose} setOpen={setOpen} />
                         <GridStats style={{ width: isMobile ? '100%' : '50%'}}>
                             <MainStats
                                 isMobile={isMobile}

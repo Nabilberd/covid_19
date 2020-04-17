@@ -15,7 +15,7 @@ interface IProps {
 const Circle = ({index, newData, selected, setSelected, max}: IProps) => {
     if (newData.activeCases === 0) return null;
     const greenRate: number = 255 - newData.activeCases * 255 / max;
-    const width: number = newData.activeCases * 20 / max;
+    const width: number = newData.activeCases < 50 ? newData.activeCases * 50 /  max : newData.activeCases * 20 /  max  ;
     return <>
         <Layer type="circle" id={"marker" + index} paint={{
             'circle-color': `rgb(255,  ${greenRate},0)`,
@@ -34,7 +34,7 @@ const Circle = ({index, newData, selected, setSelected, max}: IProps) => {
         </Layer>
         <Layer id={"text-circle"+ index} type="symbol" layout={{
             "text-field": newData.activeCases.toString(),
-            "text-size": newData.activeCases > 100 ? 11 : 10,
+            "text-size": newData.activeCases > 200 ? 14 : 10,
         }}>
             <Feature
                 coordinates={[parseFloat(newData.longitude), parseFloat(newData.latitude)]}
