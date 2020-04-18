@@ -565,14 +565,14 @@
    },
    {
       "date": "18 avril",
-      "Testseffectués": 13111,
-      "Casnégatifs": 10441,
-      "Caspositifs": 2670,
+      "Testseffectués": 13689,
+      "Casnégatifs": 11004,
+      "Caspositifs": 2685,
       "Casdécédés": 137,
-      "Casrétablis": 298,
-      "Nouveauxcaspositifs": 106,
-      "NouveauCasnégatifs": 53,
+      "Casrétablis": 314,
+      "Nouveauxcaspositifs": 121,
+      "NouveauCasnégatifs": 616,
       "NouveauCasdécédés": 2,
-      "NouveauCasrétablis": 17
+      "NouveauCasrétablis": 33
    }
 ]
