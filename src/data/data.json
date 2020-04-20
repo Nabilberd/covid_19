@@ -580,11 +580,23 @@
       "Testseffectués": 15123,
       "Casnégatifs": 12268,
       "Caspositifs": 2855,
-      "Casdécédés": 138,
-      "Casrétablis": 322,
+      "Casdécédés": 141,
+      "Casrétablis": 327,
       "Nouveauxcaspositifs": 170,
       "NouveauCasnégatifs": 1264,
       "NouveauCasdécédés": 4,
+      "NouveauCasrétablis": 13
+   },
+   {
+      "date": "20 avril",
+      "Testseffectués": 15123,
+      "Casnégatifs": 12746,
+      "Caspositifs": 2990,
+      "Casdécédés": 143,
+      "Casrétablis": 340,
+      "Nouveauxcaspositifs": 135,
+      "NouveauCasnégatifs": 478,
+      "NouveauCasdécédés": 2,
       "NouveauCasrétablis": 13
    }
 ]
