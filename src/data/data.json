@@ -602,13 +602,13 @@
    {
       "date": "21 avril",
       "Testseffectués": 16386,
-      "Casnégatifs": 14018,
-      "Caspositifs": 3186, 
-      "Casdécédés": 144,
-      "Casrétablis": 359,
-      "Nouveauxcaspositifs": 140,
-      "NouveauCasnégatifs": 678,
-      "NouveauCasdécédés": 1,
-      "NouveauCasrétablis": 9
+      "Casnégatifs": 14891,
+      "Caspositifs": 3209, 
+      "Casdécédés": 145,
+      "Casrétablis": 393,
+      "Nouveauxcaspositifs": 163,
+      "NouveauCasnégatifs": 1551,
+      "NouveauCasdécédés": 2,
+      "NouveauCasrétablis": 43
    }
 ]
