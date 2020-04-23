@@ -626,13 +626,13 @@
    {
       "date": "23 avril",
       "Testseffectués": 16386,
-      "Casnégatifs": 17295,
-      "Caspositifs": 3537, 
-      "Casdécédés": 151,
-      "Casrétablis": 430,
-      "Nouveauxcaspositifs": 91,
-      "NouveauCasnégatifs": 856,
-      "NouveauCasdécédés": 2,
-      "NouveauCasrétablis": 13
+      "Casnégatifs": 18379,
+      "Caspositifs": 3568, 
+      "Casdécédés": 155,
+      "Casrétablis": 456,
+      "Nouveauxcaspositifs": 122,
+      "NouveauCasnégatifs": 1940,
+      "NouveauCasdécédés": 6,
+      "NouveauCasrétablis": 39
    }
 ]
