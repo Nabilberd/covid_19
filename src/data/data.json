@@ -650,13 +650,13 @@
    {
       "date": "25 avril",
       "Testseffectués": 16386,
-      "Casnégatifs": 20723,
-      "Caspositifs": 3889, 
+      "Casnégatifs": 21546,
+      "Caspositifs": 3897, 
       "Casdécédés": 159,
-      "Casrétablis": 498,
-      "Nouveauxcaspositifs": 131,
-      "NouveauCasnégatifs": 548,
+      "Casrétablis": 537,
+      "Nouveauxcaspositifs": 139,
+      "NouveauCasnégatifs": 1371,
       "NouveauCasdécédés": 1,
-      "NouveauCasrétablis": 12
+      "NouveauCasrétablis": 51
    }
 ]
