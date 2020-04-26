@@ -658,5 +658,17 @@
       "NouveauCasnégatifs": 1371,
       "NouveauCasdécédés": 1,
       "NouveauCasrétablis": 51
+   },
+   {
+      "date": "26 avril",
+      "Testseffectués": 16386,
+      "Casnégatifs": 22425,
+      "Caspositifs": 4047, 
+      "Casdécédés": 160,
+      "Casrétablis": 557,
+      "Nouveauxcaspositifs": 150,
+      "NouveauCasnégatifs": 879,
+      "NouveauCasdécédés": 1,
+      "NouveauCasrétablis": 20
    }
 ]
