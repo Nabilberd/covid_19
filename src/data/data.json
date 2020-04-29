@@ -698,13 +698,13 @@
    {
       "date": "29 avril",
       "Testseffectués": 16386,
-      "Casnégatifs": 27787, 
-      "Caspositifs": 4289, 
-      "Casdécédés": 167,
-      "Casrétablis": 890,
-      "Nouveauxcaspositifs": 37,
-      "NouveauCasnégatifs": 789,
-      "NouveauCasdécédés": 2,
-      "NouveauCasrétablis": 112
+      "Casnégatifs": 28609, 
+      "Caspositifs": 4321, 
+      "Casdécédés": 168,
+      "Casrétablis": 928,
+      "Nouveauxcaspositifs": 69,
+      "NouveauCasnégatifs": 1611,
+      "NouveauCasdécédés": 3,
+      "NouveauCasrétablis": 150
    }
 ]
