@@ -710,13 +710,25 @@
    {
       "date": "30 avril",
       "Testseffectués": 16386,
-      "Casnégatifs": 29563, 
-      "Caspositifs": 4359, 
-      "Casdécédés": 168,
-      "Casrétablis": 969,
-      "Nouveauxcaspositifs": 69,
-      "NouveauCasnégatifs": 954,
-      "NouveauCasdécédés": 0,
-      "NouveauCasrétablis": 41
+      "Casnégatifs": 30418, 
+      "Caspositifs": 4423, 
+      "Casdécédés": 170,
+      "Casrétablis": 984,
+      "Nouveauxcaspositifs": 102,
+      "NouveauCasnégatifs": 1809,
+      "NouveauCasdécédés": 2,
+      "NouveauCasrétablis": 56
+   },
+   {
+      "date": "01 mai",
+      "Testseffectués": 16386,
+      "Casnégatifs": 32437, 
+      "Caspositifs": 4569, 
+      "Casdécédés": 171,
+      "Casrétablis": 1083,
+      "Nouveauxcaspositifs": 146,
+      "NouveauCasnégatifs": 2019,
+      "NouveauCasdécédés": 1,
+      "NouveauCasrétablis": 99
    }
 ]
